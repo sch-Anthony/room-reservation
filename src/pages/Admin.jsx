@@ -141,7 +141,7 @@ function Admin() {
             title="클릭하여 전화번호 복사"
             style={{ cursor: "pointer", userSelect: "none" }}
           >
-            {item.phone}⧉
+            {item.phone} <span title="복사">⧉</span>
           </span>
           <p>예약 인원: {item.people_count}명</p>
           <p>
