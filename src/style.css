@@ -137,11 +137,11 @@ form select {
 }
 
 form label {
-  width: 80%;
+  width: 85%;
   align-self: center;
   font-size: 18px;
   margin-top: 8px;
-  margin-bottom: -4px;
+  margin-bottom: -2px;
 }
 
 form button {
