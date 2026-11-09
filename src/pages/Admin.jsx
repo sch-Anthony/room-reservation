@@ -134,9 +134,12 @@ function Admin() {
           </div>
 
           <span
-            onClick={() => navigator.clipboard.writeText(item.phone)}
-            title="클릭해 전화번호 복사"
-            style={{ cursor: "pointer" }}
+            onClick={async () => {
+              await navigator.clipboard.writeText(item.phone);
+              alert("전화번호가 복사되었습니다.");
+            }}
+            title="클릭하여 전화번호 복사"
+            style={{ cursor: "pointer", userSelect: "none" }}
           >
             {item.phone}
           </span>
