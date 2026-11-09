@@ -6,37 +6,28 @@ function Home() {
   const navigate = useNavigate();
   const [teamCount, setTeamCount] = useState(0);
   const [loading, setLoading] = useState(true);
-
-  async function loadReservationCount() {
-  setLoading(true);
+  
+  async function loadCount(showLoading = false) {
+  if (showLoading) {
+    setLoading(true);
+  }
 
   const { data, error } = await supabase.rpc("get_reservation_count");
 
-  if (error) {
-    console.error(error);
+  if (!error) {
+    setTeamCount(Number(data));
   } else {
-    setTeamCount(data ?? 0);
+    console.error(error);
   }
 
-  setLoading(false);
-}
-  
-  async function loadCount() {
-    const { data, error } = await supabase.rpc(
-      "get_reservation_count"
-    );
-
-    if (!error) {
-      setTeamCount(Number(data));
-    } else {
-      console.error(error);
-    }
-
+  if (showLoading) {
     setLoading(false);
   }
+}
+  
 
   useEffect(() => {
-  loadCount();
+  loadCount(true);
 
   const interval = setInterval(() => {
     loadCount();
@@ -44,6 +35,7 @@ function Home() {
 
   return () => clearInterval(interval);
 }, []);
+  
 
   return (
     <main className="container">
