@@ -36,8 +36,14 @@ function Home() {
   }
 
   useEffect(() => {
+  loadCount();
+
+  const interval = setInterval(() => {
     loadCount();
-  }, []);
+  }, 1000);
+
+  return () => clearInterval(interval);
+}, []);
 
   return (
     <main className="container">
@@ -50,9 +56,6 @@ function Home() {
         </span>
         <span>예약 팀</span>
       </section>
-      <button className="back-button" onClick={loadReservationCount}>
-        새로고침
-      </button>
 
       <button
         className="primary-button"
