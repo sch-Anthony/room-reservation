@@ -149,6 +149,36 @@ textarea {
 input::placeholder,
 textarea::placeholder {
   color: #888888;
+* {
+box-sizing: border-box;
+}
+
+body {
+margin: 0;
+background: #f5f6f8;
+color: #20242b;
+font-family: Arial, sans-serif;
+}
+
+.container {
+  width: 100%;
+  max-width: 480px;
+  min-height: 100vh;
+  margin: auto;
+  padding: 45px 24px;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
+}
+
+h1 {
+@@ -160,4 +159,4 @@
+select option {
+color: #222222;
+background-color: #ffffff;
+}
+}
   -webkit-text-fill-color: #888888;
 }
 
