@@ -133,7 +133,13 @@ function Admin() {
             <span>{item.student_id}</span>
           </div>
 
-          <p>전화번호: {item.phone}</p>
+          <span
+            onClick={() => navigator.clipboard.writeText(item.phone)}
+            title="클릭해 전화번호 복사"
+            style={{ cursor: "pointer" }}
+          >
+            {item.phone}
+          </span>
           <p>예약 인원: {item.people_count}명</p>
           <p>
             예약 시간: {new Date(item.created_at).toLocaleString("ko-KR")}
