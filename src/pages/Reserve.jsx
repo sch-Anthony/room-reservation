@@ -1,158 +1,136 @@
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { supabase } from "../lib/supabase";
 
-* {
-  box-sizing: border-box;
+function Reserve() {
+const navigate = useNavigate();
+
+const [form, setForm] = useState({
+name: "",
+student_id: "",
+phone: "",
+people_count: "1"
+});
+
+const [loading, setLoading] = useState(false);
+
+function handleChange(e) {
+const { name, value } = e.target;
+
+setForm({
+...form,
+[name]: value
+});
 }
 
-body {
-  margin: 0;
-  background: #f5f6f8;
-  color: #20242b;
-  font-family: Arial, sans-serif;
-  font-size: 18px;
+async function handleSubmit(e) {
+e.preventDefault();
+
+if (!/^\d{4}$/.test(form.student_id)) {
+alert("! 4자리 학번을 입력 !");
+return;
 }
 
-.container {
-  width: 100%;
-  max-width: none;
-  margin: 0;
-  padding: 35px 0;
+if (!/^[0-9-]{9,20}$/.test(form.phone)) {
+alert("! 전화번호를 입력 !");
+return;
 }
 
-h1 {
-  font-size: 34px;
-  letter-spacing: 1px;
-  text-align: center;
+if (!form.name.trim()) {
+alert("! 이름을 입력 !");
+return;
 }
 
-.subtitle {
-  text-align: center;
-  color: #858b95;
-  font-size: 20px;
-  margin: 16px 0 40px;
+setLoading(true);
+
+const { error } = await supabase
+.from("reservations")
+.insert([{
+name: form.name.trim(),
+student_id: form.student_id,
+phone: form.phone,
+people_count: Number(form.people_count)
+}]);
+
+setLoading(false);
+
+if (error) {
+console.error(error);
+alert("예약 등록 실패 (っ °Д °;)っ");
+return;
 }
 
-.count-card {
-  width: 100%;
-  padding: 65px 20px;
-  margin: 35px 0;
-  background: #e6e8ec;
-  border-radius: 12px;
-  text-align: center;
+    alert("예약 완료 (〜￣▽￣)〜");
+    alert("예약 완료 (〜￣▽￣)〜 (미입력/부적절한 입력 시 예고 없이 취소될 수 있습니다.)");
+navigate("/");
 }
 
-.count {
-  font-size: 6rem;
+return (
+<main className="container">
+<h1>RESERVATION</h1>
+<p className="subtitle">예약 정보 입력</p>
+
+<form onSubmit={handleSubmit}>
+<label>이름</label>
+<input
+name="name"
+value={form.name}
+onChange={handleChange}
+maxLength={30}
+placeholder="이름 입력"
+required
+/>
+
+<label>학번 (4자리)</label>
+<input
+name="student_id"
+value={form.student_id}
+onChange={handleChange}
+maxLength={4}
+inputMode="numeric"
+placeholder="예: 1234"
+required
+/>
+
+<label>전화번호(- 생략)</label>
+<input
+name="phone"
+value={form.phone}
+onChange={handleChange}
+inputMode="tel"
+placeholder="01012341234"
+required
+/>
+
+<label>예약 인원</label>
+<select
+name="people_count"
+value={form.people_count}
+onChange={handleChange}
+>
+<option value="1">1인</option>
+<option value="2">2인</option>
+<option value="3">3인</option>
+<option value="4">4인</option>
+</select>
+
+<button
+className="primary-button"
+type="submit"
+disabled={loading}
+>
+{loading ? "등록 중..." : "예약 등록"}
+</button>
+</form>
+
+<button
+className="back-button"
+onClick={() => navigate("/")}
+>
+돌아가기
+</button>
+</main>
+);
 }
 
-form {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-label {
-  font-size: 18px;
-  font-weight: bold;
-  margin-top: 14px;
-}
-
-input, select {
-  width: 100%;
-  height: 60px;
-  padding: 0 16px;
-  border: 1px solid #dce0e5;
-  border-radius: 9px;
-  background: white;
-  font-size: 19px;
-}
-
-button {
-  width: 100%;
-  min-height: 62px;
-  border: none;
-  border-radius: 10px;
-  font-size: 19px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-button:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-}
-
-.primary-button {
-  font-size: 22px;
-  padding: 20px;
-}
-
-.back-button {
-  background: #e6e8ec;
-  color: #333;
-  margin-top: 18px;
-}
-
-.admin-container {
-  max-width: none;
-}
-
-.admin-summary {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  display: flex;
-  justify-content: space-between;
-  margin: 25px 0;
-  font-size: 20px;
-}
-
-.reservation-card {
-  background: white;
-  padding: 25px;
-  border-radius: 12px;
-  margin-top: 20px;
-  overflow-wrap: anywhere;
-  font-size: 19px;
-}
-
-.reservation-card span {
-  margin-left: 12px;
-  color: #858b95;
-}
-
-.reservation-card p {
-  font-size: 18px;
-}
-
-.delete-button {
-  background: #e8e8e8;
-  color: #b42318;
-  margin-top: 14px;
-}
-
-footer {
-  text-align: center;
-  color: #aaa;
-  font-size: 15px;
-  margin-top: 60px;
-}
-
-input,
-select,
-textarea {
-  color: #222222 !important;
-  background-color: #ffffff !important;
-  -webkit-text-fill-color: #222222;
-  caret-color: #222222;
-}
-
-input::placeholder,
-textarea::placeholder {
-  color: #888888;
-  -webkit-text-fill-color: #888888;
-}
-
-select option {
-  color: #222222;
-  background-color: #ffffff;
-}
+export default Reserve;
