@@ -60,7 +60,7 @@ function Reserve() {
       return;
     }
 
-    alert("예약 완료 (〜￣▽￣)〜");
+    alert("예약 완료 (〜￣▽￣)〜 (미입력/부적절한 입력 시 예고 없이 취소될 수 있습니다.)");
     navigate("/");
   }
 
