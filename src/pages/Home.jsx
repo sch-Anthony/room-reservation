@@ -7,6 +7,20 @@ function Home() {
   const [teamCount, setTeamCount] = useState(0);
   const [loading, setLoading] = useState(true);
 
+  async function loadReservationCount() {
+  setLoading(true);
+
+  const { data, error } = await supabase.rpc("get_reservation_count");
+
+  if (error) {
+    console.error(error);
+  } else {
+    setTeamCount(data ?? 0);
+  }
+
+  setLoading(false);
+}
+  
   async function loadCount() {
     const { data, error } = await supabase.rpc(
       "get_reservation_count"
@@ -36,6 +50,9 @@ function Home() {
         </span>
         <span>예약 팀</span>
       </section>
+      <button className="back-button" onClick={loadReservationCount}>
+        새로고침
+      </button>
 
       <button
         className="primary-button"
