@@ -28,7 +28,7 @@ body {
 .container {
   width: 100%;
   max-width: 640px;
-  min-height: 100vh;
+  min-height: 100%;
   margin: 0 auto;
   padding: 50px 24px;
   display: flex;
