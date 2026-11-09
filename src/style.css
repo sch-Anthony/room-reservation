@@ -11,14 +11,14 @@ body {
 }
 
 .container {
-  width: 95%;
-  max-width: 1000px;
-  margin: 0 auto;
-  padding: 50px 25px;
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  padding: 20px 12px;
 }
 
 h1 {
-  font-size: 25px;
+  font-size: 28px;
   letter-spacing: 1px;
   text-align: center;
 }
@@ -26,12 +26,14 @@ h1 {
 .subtitle {
   text-align: center;
   color: #858b95;
-  margin: 12px 0 35px;
+  margin: 12px 0 25px;
 }
 
 .count-card {
-  padding: 60px 30px;
-  margin: 40px 0;
+  width: 100%;
+  padding: 60px 15px;
+  margin: 20px 0;
+}
 
 .count {
   font-size: 5rem;
@@ -60,12 +62,13 @@ input, select {
 }
 
 button {
-  height: 50px;
+  width: 100%;
+  min-height: 50px;
   border: none;
   border-radius: 10px;
   font-size: 16px;
   font-weight: bold;
-  cursor: inter;
+  cursor: pointer;
 }
 
 button:disabled {
@@ -75,18 +78,17 @@ button:disabled {
 
 .primary-button {
   font-size: 1.3rem;
-  padding: 18px 40px;
+  padding: 18px 20px;
 }
 
 .back-button {
-  width: 100%;
   background: #e6e8ec;
   color: #333;
   margin-top: 15px;
 }
 
 .admin-container {
-  max-width: 600px;
+  max-width: none;
 }
 
 .admin-summary {
@@ -116,7 +118,6 @@ button:disabled {
 }
 
 .delete-button {
-  width: 100%;
   background: #e8e8e8;
   color: #b42318;
   margin-top: 10px;
@@ -126,9 +127,8 @@ footer {
   text-align: center;
   color: #aaa;
   font-size: 11px;
-  margin-top: 80px;
+  margin-top: 40px;
 }
-
 
 input,
 select,
