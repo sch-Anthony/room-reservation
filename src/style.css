@@ -11,11 +11,10 @@ body {
 }
 
 .container {
-  width: 100%;
-  max-width: 480px;
-  min-height: 100vh;
-  margin: auto;
-  padding: 45px 24px;
+  width: 90%;
+  max-width: 700px;
+  margin: 0 auto;
+  padding: 40px 20px;
 }
 
 h1 {
