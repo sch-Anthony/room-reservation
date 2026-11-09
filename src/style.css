@@ -78,7 +78,7 @@ form {
   flex-direction: column;
   justify-content: space-around;
   flex: 1;
-  gap: 12px;
+  gap: 18px;
 }
 
 label {
@@ -140,7 +140,7 @@ form label {
   width: 80%;
   align-self: center;
   font-size: 18px;
-  margin-top: 6px;
+  margin-top: 8px;
   margin-bottom: -4px;
 }
 
