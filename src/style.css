@@ -157,16 +157,16 @@ form .primary-button {
   padding: 19px;
 }
 
-.admin-container {
+.container {
   width: 100%;
   max-width: 640px;
-  min-height: 0;
+  min-height: 100%;
   margin: 0 auto;
-  padding: 30px 24px;
+  padding: 50px 24px;
   display: flex;
   flex-direction: column;
-  justify-content: flex-start;
-  gap: 20px;
+  justify-content: space-between;
+  gap: 32px;
 }
 
 .admin-summary {
